@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+   </head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warframe</title>
+        <body>
+<head>
+<style>
+* {
+  box-sizing: border-box!important;
+}
+
+    
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+
+        .modal-content {
+            background-color: #000;
+            margin: 15% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%; 
+            max-width: 900px; 
+            z-index: 1;
+            color: white;
+            display: flex;
+            justify-content: space-between; /* Align the checklists side by side */
+            border-radius:10px;
+        }
+
+        .checklist {
+            line-height: 1.5em;
+            width: 48%;
+        }
+
+        .checklist.weekly ol {
+            list-style-type: none; /* Remove the default list numbers */
+            padding-left: 0;
+        }
+
+        .checklist.daily ol {
+            padding-left: 0;
+        }
+
+        .checklist.daily li {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .checklist.daily label {
+            margin-right: 10px; /* Add space between label and checkbox */
+        }
+        .checklist.event li {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    .checklist.event h2 {
+        display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="checklist weekly">
+                <h2>Weekly Checklist</h2>
+                <hr style="color:black;">
+                <ol>
+                    <li><input type="checkbox" id="item1_weekly"> <label for="item1_weekly">Deep Arcemedia/Netracells</label></li>
+                    <li><input type="checkbox" id="item2_weekly"> <label for="item2_weekly">Bird 3's shard</label></li>
+                    <li><input type="checkbox" id="item3_weekly"> <label for="item3_weekly">Archon Hunt</label></li>
+                    <li><input type="checkbox" id="item4_weekly"> <label for="item4_weekly">Iron Wake</label></li>
+                    <li><input type="checkbox" id="item5_weekly"> <label for="item5_weekly">Teshin</label></li>
+                    <li><input type="checkbox" id="item6_weekly"> <label for="item6_weekly">Circuit</label></li>
+                    <li><input type="checkbox" id="item7_weekly"> <label for="item7_weekly">Nightwave</label></li>
+                    <li><input type="checkbox" id="item8_weekly"> <label for="item8_weekly">Maroo's Treasure Hunt</label></li>
+                </ol>
+            </div>
+
+                        <div class="checklist event">
+                <h2>Event Checklist</h2>
+                <hr style="color:black;">
+                <ol>
+                    <li><input type="checkbox" id="item1_event"> <label for="item1_weekly">Ducats</label></li>
+                    <li><input type="checkbox" id="item2_event"> <label for="item2_weekly">Aya</label></li>
+                    <li><input type="checkbox" id="item3_event"> <label for="item3_weekly">Max Frames</label></li>
+                </ol>
+            </div>
+            
+            <div class="checklist daily">
+                <h2 style="text-align:right;">Daily Checklist</h2>
+                <hr style="color:black;">
+                <ol>
+                    <li><label for="item1_daily">Sortie</label> <input type="checkbox" id="item1_daily"></li>
+                    <li><label for="item2_daily">Focus</label> <input type="checkbox" id="item2_daily"></li>
+                    <li><label for="item3_daily">Syndacate Standing</label> <input type="checkbox" id="item3_daily"></li>
+                    <li><label for="item4_daily">Neutral Factions Standing</label> <input type="checkbox" id="item4_daily"></li>
+                    <li><label for="item5_daily">Steel Path Incursions</label> <input type="checkbox" id="item5_daily"></li>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById("modal");
+
+            // Function to toggle the modal
+            function toggleModal() {
+                if (modal.style.display === "block") {
+                    modal.style.display = "none";
+                } else {
+                    modal.style.display = "block";
+                }
+            }
+
+            // Event listener for the spacebar key press
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    event.preventDefault();  // Prevent default spacebar action
+                    toggleModal();
+                }
+            });
+
+            // Event listener to close the modal when clicking outside of the modal content
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+
+
+
+<body>
+    <div style="justify-content:right; position:absolute; right:1%; bottom:1%; font-color:white;">
+    <p style="color:white;">Youtube:Y</p>
+    <p style="color:white;">Twitch:T</p>
+    <p style="color:white;">Warframe:W</p>
+    <p style="color:white;">Glyphs:P</p>
+    <p style="color:white;">Polycrome:C</p>
+    <p style="color:white;">Guide:G</p>
+    <p style="color:white;">FrameHub:F</p>
+    <p style="color:white;">Riven:R</p>
+    <p style="color:white;">DojoCAD:D</p>
+    <p style="color:white;">Mandascore:M</p>
+    <p style="color:white;">OrokinArchives:O</p>
+    <p style="color:white;">Checklist:Space</p>
+    </div>
+</body>
+
+
+
+
+<style>
+
+        .small-arm {
+            width: 100px; 
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            border-radius: 10px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+       
+        .expanded-arm {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm .firstArm {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+        .expanded-arm1 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm1 img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm1 .firstArm1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm1{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+
+
+        .expanded-arm2 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm2 img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm2 .firstArm2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm2{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+        .expanded-arm3 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm3 img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm3 .firstArm3 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm3{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+
+
+
+    
+       
+        .expanded-arm4 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm4 img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm4 .firstArm4 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm4{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+
+       
+        .expanded-arm5 {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-arm5 img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-arm5 .firstArm5 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchArm5{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+    
+
+    
+        .imageSwitchArmBack{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchArmBack1{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchArmBack2{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchArmBack3{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchArmBack4{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchArmBack5{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+    
+    </style>
+
+<body>
+    <img class="small-arm" draggable="false" src="armSD1.png">
+    <div class="expanded-arm" id="expandedArm">
+        <button class="imageSwitchArm" onclick="showExpandedArm1()" onclick="closeExpandedArm()">></button>
+        <img draggable="false" src="armSD1.png">
+        <button class="firstArm" onclick="closeExpandedArm()"></button>
+        <button class="imageSwitchArmBack" onclick="closeExpandedArm()" onclick="showExpandedArm5()"><</button>
+    </div>
+    <div class="expanded-arm1" id="expandedArm1">
+        <button class="imageSwitchArm1" onclick="showExpandedArm2()" onclick="closeExpandedArm1()">></button>
+        <button class="firstArm1" onclick="closeExpandedArm1()"></button>
+        <img draggable="false" src="armSD2.png">
+        <button class="imageSwitchArmBack1" onclick="closeExpandedArm1()" onclick="showExpandedArm()"><</button>
+    </div>
+    <div class="expanded-arm2" id="expandedArm2">
+        <button class="imageSwitchArm2" onclick="showExpandedArm3()">></button>
+        <button class="firstArm2" onclick="closeExpandedArm2()"></button>
+        <img draggable="false" src="armSD3.png">
+        <button class="imageSwitchArmBack2" onclick="closeExpandedArm2()" onclick="showExpandedArm1()"><</button>
+    </div>
+    <div class="expanded-arm3" id="expandedArm3">
+        <button class="imageSwitchArm3" onclick="showExpandedArm4()" onclick="closeExpandedArm3()">></button>
+        <button class="firstArm3" onclick="closeExpandedArm3()"></button>
+        <img draggable="false" src="armSS1.png">
+        <button class="imageSwitchArmBack3" onclick="closeExpandeArm3()" onclick="showExpandedArm2()"><</button>
+    </div>
+    <div class="expanded-arm4" id="expandedArm4">
+        <button class="imageSwitchArm4" onclick="showExpandedArm5()" onclick="closeExpandedArm4()">></button>
+        <button class="firstArm4" onclick="closeExpandedArm4()"></button>
+        <img draggable="false" src="armSS2.png">
+        <button class="imageSwitchArmBack4" onclick="closeExpandeArm4()" onclick="showExpandedArm3()"><</button>
+    </div>
+    <div class="expanded-arm5" id="expandedArm5">
+        <button class="imageSwitchArm5" onclick="showExpandedArm()" onclick="closeExpandedArm5()">></button>
+        <button class="firstArm5" onclick="closeExpandedArm5()"></button>
+        <img draggable="false" src="armSS3.png">
+        <button class="imageSwitchArmBack5" onclick="closeExpandeArm5()" onclick="showExpandedArm4()"><</button>
+    </div>
+    <script>
+
+        function showExpandedArm5() {
+            document.getElementById("expandedArm5").style.display = "flex";
+        }
+        function closeExpandedArm5() {
+            document.getElementById("expandedArm5").style.display = "none";
+        }
+
+
+        function showExpandedArm4() {
+            document.getElementById("expandedArm4").style.display = "flex";
+        }
+        function closeExpandedArm4() {
+            document.getElementById("expandedArm4").style.display = "none";
+        }
+
+        
+        function showExpandedArm3() {
+            document.getElementById("expandedArm3").style.display = "flex";
+        }
+        function closeExpandedArm3() {
+            document.getElementById("expandedArm3").style.display = "none";
+        }
+
+
+        
+
+        function showExpandedArm2() {
+            document.getElementById("expandedArm2").style.display = "flex";
+        }
+        function closeExpandedArm2() {
+            document.getElementById("expandedArm2").style.display = "none";
+        }
+
+
+
+
+        function showExpandedArm1() {
+            document.getElementById("expandedArm1").style.display = "flex";
+        }
+        function closeExpandedArm1() {
+            document.getElementById("expandedArm1").style.display = "none";
+        }
+
+
+
+
+        function showExpandedArm() {
+            document.getElementById("expandedArm").style.display = "flex";
+        }
+        function closeExpandedArm() {
+            document.getElementById("expandedArm").style.display = "none";
+        }
+
+
+
+        
+        document.querySelector(".small-arm").addEventListener("click", showExpandedArm);
+        document.querySelector(".imageSwitchArm").addEventListener("click", closeExpandedArm);
+        document.querySelector(".imageSwitchArm1").addEventListener("click", closeExpandedArm1);
+        document.querySelector(".imageSwitchArm2").addEventListener("click", closeExpandedArm2);
+        document.querySelector(".imageSwitchArm3").addEventListener("click", closeExpandedArm3);
+        document.querySelector(".imageSwitchArm4").addEventListener("click", closeExpandedArm4);
+        document.querySelector(".imageSwitchArm5").addEventListener("click", closeExpandedArm5);
+
+        
+        document.querySelector(".imageSwitchArmBack").addEventListener("click", showExpandedArm5);
+        document.querySelector(".imageSwitchArmBack1").addEventListener("click", showExpandedArm);
+        document.querySelector(".imageSwitchArmBack2").addEventListener("click", showExpandedArm1);
+        document.querySelector(".imageSwitchArmBack3").addEventListener("click", showExpandedArm2);
+        document.querySelector(".imageSwitchArmBack4").addEventListener("click", showExpandedArm3);
+        document.querySelector(".imageSwitchArmBack5").addEventListener("click", showExpandedArm4);
+        
+        document.querySelector(".imageSwitchArmBack").addEventListener("click", closeExpandedArm);
+        document.querySelector(".imageSwitchArmBack1").addEventListener("click", closeExpandedArm1);
+        document.querySelector(".imageSwitchArmBack2").addEventListener("click", closeExpandedArm2);
+        document.querySelector(".imageSwitchArmBack3").addEventListener("click", closeExpandedArm3);
+        document.querySelector(".imageSwitchArmBack4").addEventListener("click", closeExpandedArm4);
+        document.querySelector(".imageSwitchArmBack5").addEventListener("click", closeExpandedArm5);
+    </script>
+
+
+
+    
+
+
+    <style>
+        .small-elements {
+            width: 100px; 
+            position: fixed;
+            bottom: 5px;
+            left: 43%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            border-radius: 10px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+       
+        .expanded-elements {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-elements img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-elements .firstDam {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchDam{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+        .expanded-damage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-damage img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-damage .firstDam1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchDam1{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+
+
+        .expanded-damSim {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-damSim img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-damSim .firstDam2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchDam2{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+
+
+
+
+
+
+        .expanded-damE {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-damE img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-damE .firstDam2 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+        .imageSwitchDam3{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchDamBack{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchDamBack1{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchDamBack2{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .imageSwitchDamBack3{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+    </style>
+
+<body>
+    <img class="small-elements" draggable="false" src="Elements.webp">
+    <div class="expanded-elements" id="expandedElements">
+        <button class="imageSwitchDam" onclick="showExpandedDamage()" onclick="closeExpandedElements()">></button>
+        <img draggable="false" src="Elements.webp">
+        <button class="firstDam" onclick="closeExpandedElements()"></button>
+        <button class="imageSwitchDamBack" onclick="closeExpandedElements()" onclick="showExpandedDamE()"><</button>
+    </div>
+    <div class="expanded-damage" id="expandedDamage">
+        <button class="imageSwitchDam1" onclick="showExpandedDamSim()" onclick="closeExpandedDamage()">></button>
+        <button class="firstDam1" onclick="closeExpandedDamage()"></button>
+        <img draggable="false" src="damage.png">
+        <button class="imageSwitchDamBack3" onclick="closeExpandedDamage()" onclick="showExpandedElements()"><</button>
+    </div>
+    <div class="expanded-damSim" id="expandedDamSim">
+        <button class="imageSwitchDam2" onclick="showExpandedDamE()" onclick="closeExpandedDamSim()">></button>
+        <button class="firstDam2" onclick="closeExpandedDamSim()"></button>
+        <img draggable="false" src="simpleDamage.png">
+        <button class="imageSwitchDamBack2" onclick="closeExpandedDamSim()" onclick="showExpandedDamage()"><</button>
+    </div>
+    <div class="expanded-damE" id="expandedDamE">
+        <button class="imageSwitchDam3" onclick="showExpandedElements()" onclick="closeExpandedDamE()">></button>
+        <button class="firstDam2" onclick="closeExpandedDamE()"></button>
+        <img draggable="false" src="Fack.png">
+        <button class="imageSwitchDamBack1" onclick="closeExpandedDamE()" onclick="showExpandedDamSim()"><</button>
+    </div>
+    <script>
+        function showExpandedElements() {
+            document.getElementById("expandedElements").style.display = "flex";
+        }
+        function closeExpandedElements() {
+            document.getElementById("expandedElements").style.display = "none";
+        }
+
+
+        
+
+        function showExpandedDamage() {
+            document.getElementById("expandedDamage").style.display = "flex";
+        }
+        function closeExpandedDamage() {
+            document.getElementById("expandedDamage").style.display = "none";
+        }
+
+
+
+
+        function showExpandedDamSim() {
+            document.getElementById("expandedDamSim").style.display = "flex";
+        }
+        function closeExpandedDamSim() {
+            document.getElementById("expandedDamSim").style.display = "none";
+        }
+
+
+
+
+        function showExpandedDamE() {
+            document.getElementById("expandedDamE").style.display = "flex";
+        }
+        function closeExpandedDamE() {
+            document.getElementById("expandedDamE").style.display = "none";
+        }
+
+
+
+        
+        document.querySelector(".small-elements").addEventListener("click", showExpandedElements);
+        document.querySelector(".imageSwitchDam").addEventListener("click", closeExpandedElements);
+        document.querySelector(".imageSwitchDam1").addEventListener("click", closeExpandedDamage);
+        document.querySelector(".imageSwitchDam2").addEventListener("click", closeExpandedDamSim);
+        document.querySelector(".imageSwitchDam3").addEventListener("click", closeExpandedDamE);
+        document.querySelector(".imageSwitchDamBack").addEventListener("click", showExpandedDamE);
+        document.querySelector(".imageSwitchDamBack1").addEventListener("click", showExpandedDamSim);
+        document.querySelector(".imageSwitchDamBack2").addEventListener("click", showExpandedDamage);
+        document.querySelector(".imageSwitchDamBack3").addEventListener("click", showExpandedElements);
+    </script>
+
+
+
+
+
+
+
+
+
+   <style>
+        .small-info {
+            width: 100px; 
+            position: fixed;
+            bottom: 5px;
+            left: 57%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            border-radius: 10px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+       
+        .expanded-info {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Add this line */
+        }
+        .expanded-info img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px; 
+        }
+        .expanded-info .firstOpen {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+               .lich .closeLich {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+            .imageSwitchInfo{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+       .imageSwitchInfoBack{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+        .lich{
+              display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+              .imageSwitchInfoBack2{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+                   .imageSwitchInfo2{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+       .amp{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+       }
+                      .amp .closeAmp {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width:100%;
+            height:100%;
+        }
+       .imageSwitchInfoBack5{
+                Position:absolute;
+                left:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+       .imageSwitchInfoBack6{
+                Position:absolute;
+                right:5%;
+                height:75px;
+                width:60px;
+                background-color:gray;
+                z-index:99999;
+                display-content:center;
+                border-radius:25%;
+            }
+    </style>
+
+
+    <img class="small-info" draggable="false" src="NewProject.png">
+    <div class="expanded-info" id="expandedInfo">
+        <button class="imageSwitchInfo" onclick="showExpandedLich()" onclick="closeExpandedInfo()">Lich</button>
+        <img draggable="false" src="NewProject.png" style="border-radius:10px;">
+        <button class="firstOpen" onclick="closeExpandedInfo()"></button>
+        <button class="imageSwitchInfoBack5" onclick="closeExpandedInfo()" onclick="showExpandedAmp()">Amp</button>
+    </div>
+    <div class="lich" id="expandedLich">
+        <button class="imageSwitchInfoBack" onclick="closeExpandedLich()" onclick="showExpandedInfo()">Mining</button>
+        <img draggable="false" src="Lich.png" style="border-radius:10px;">
+        <button class="closeLich" onclick="closeExpandedLich()"></button>
+        <button class="imageSwitchInfo2" onclick="showExpandedAmp()" onclick="closeExpandedLich()">Amps</button>
+    </div>
+    <div class="amp" id="expandedAmp">
+        <button class="imageSwitchInfoBack2" onclick="closeExpandedAmp()" onclick="showExpandedLich()">Lich</button>
+        <img draggable="false" src="amps.webp" style="border-radius:10px;">
+        <button class="closeAmp" onclick="closeExpandedAmp()"></button>
+        <button class="imageSwitchInfoBack6" onclick="closeExpandedAmp()" onclick="showExpandedInfo()">Mining</button>
+    </div>
+    <script>
+        document.querySelector(".small-info").addEventListener("click", showExpandedInfo);
+        document.querySelector(".imageSwitchInfoBack").addEventListener("click", showExpandedInfo);
+        document.querySelector(".imageSwitchInfoBack2").addEventListener("click", showExpandedLich);
+        document.querySelector(".imageSwitchInfo").addEventListener("click", closeExpandedInfo);
+        document.querySelector(".imageSwitchInfo").addEventListener("click", showExpandedLich);
+        document.querySelector(".imageSwitchInfo2").addEventListener("click", closeExpandedLich);
+        document.querySelector(".imageSwitchInfoBack5").addEventListener("click", showExpandedAmp);
+        document.querySelector(".imageSwitchInfoBack6").addEventListener("click", showExpandedInfo);
+
+
+        
+        function showExpandedInfo() {
+            document.getElementById("expandedInfo").style.display = "flex";
+        }
+        function closeExpandedInfo() {
+            document.getElementById("expandedInfo").style.display = "none";
+        }
+        
+
+        //lich
+
+        function showExpandedLich() {
+            document.getElementById("expandedLich").style.display = "flex";
+        }
+        function closeExpandedLich() {
+            document.getElementById("expandedLich").style.display = "none";
+        }
+
+
+        //amp
+
+        function showExpandedAmp() {
+            document.getElementById("expandedAmp").style.display = "flex";
+        }
+        function closeExpandedAmp() {
+            document.getElementById("expandedAmp").style.display = "none";
+        }
+    </script>
+    
+</body>
+
+
+
+
+
+    
+
+
+
+<div class="synBod" >
+    <button class="syn" onclick="window.open('https://semlar.com/')">
+      Semlar
+      <span class="first spn"></span>
+      <span class="second spn"></span>
+      <span class="third spn"></span>
+      <span class="fourth spn"></span>
+    </button>
+    </div>
+    
+    <style>
+        
+
+      .synBod {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+      }
+      .syn {
+        border: none;
+        padding: 20px 40px;
+        font-size: 44px;
+        position: absolute;
+        left: 1%;
+        top: 2%;
+        background: transparent;
+        color: #ffa500;
+        text-transform: uppercase;
+        border: 3px solid #ffa500;
+        cursor: pointer;
+        transition: all 0.7s;
+        overflow: hidden;
+        border-radius: 100px;
+      }
+
+      .syn:hover {
+        color: #000;
+      }
+      .spn {
+        transition: all 0.7s;
+        z-index: -1;
+      }
+
+      .syn .first {
+        content: "";
+        position: absolute;
+        right: 100%;
+        top: 0;
+        width: 25%;
+        height: 100%;
+        background: #ffa500;
+      }
+
+      .syn:hover .first {
+        top: 0;
+        right: 0;
+      }
+      .syn .second {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: -100%;
+        height: 100%;
+        width: 25%;
+        background: #ffa500;
+      }
+
+      .syn:hover .second {
+        top: 0;
+        left: 50%;
+      }
+
+      .syn .third {
+        content: "";
+        position: absolute;
+        left: 50%;
+        height: 100%;
+        top: 100%;
+        width: 25%;
+        background: #ffa500;
+      }
+
+      .syn:hover .third {
+        top: 0;
+        left: 25%;
+      }
+
+      .syn .fourth {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        height: 100%;
+        width: 25%;
+        background: #ffa500;
+      }
+
+      .syn:hover .fourth {
+        top: 0;
+        left: 0;
+      }
+
+        
+    </style>
+
+
+
+    
+
+<div>
+    <div class="box">
+  <div class="container">
+    <button onclick="window.open('https://overframe.gg/')" class="button"><span class="midcir"><img draggable="false" class="good" src="56dfc27f8235cd3cf5bad62cc684f11a.png"></span></button>
+    <button onclick="window.open('https://warframe.fandom.com/wiki/WARFRAME_Wiki')" class="button"><span class="midcir"><img draggable="false" class="bad" src="R.jpeg"></span></button>
+    <button onclick="window.open('https://riven.market/')" class="button"><span class="midcir"><img draggable="false" class="bad" src="maxresdefault.jpg"></span></button>
+    <button onclick="window.open('https://warframe.market/')" class="button"><span class="midcir"><img draggable="false" class="good" src="R.png"></span></button>
+  </div>
+</div>
+
+    <style>
+
+    canvas {
+        position:absolute;
+            margin: 0;
+    padding: 0;
+
+    height: 100vh;
+    }
+
+        
+        html, head {margin: 0; height: 100%; overflow: hidden}
+        .midcir{
+            position:absolute;
+            height:70%;
+            width:70%;
+        }
+        body {
+ 
+}
+        head {
+            position:absolute;
+        }
+    .bad {
+        position:absolute;
+        left:-25%;
+        height:100%;
+        width:150%;
+        border-radius: 200px 200px 200px 200px;
+    }
+   
+    .good {
+        position:absolute;
+        left:0%;
+        height:100%;
+        width:100%;
+        border-radius: 200px 200px 200px 200px;
+        
+    }
+.box .container .button .midcir {
+    border-radius: 200px 200px 200px 200px;
+    overflow:hidden;
+    position: absolute;
+    height:70%;
+    width:70%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) skew(15deg);
+  width: 250px;
+  height: 250px;
+}
+.box .container {
+  width: 269.5px;
+  height: 269px;
+  background: #2f0000;
+  border-radius: 15px;
+  border: 10px solid #cbcdcd;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5px;
+}
+.box .container .button {
+  position: relative;
+  flex-basis: calc(50% - 0.5px);
+  background: #ca0a0b;
+  border: 0;
+  font-size: 35px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+    
+  transition: all 0.5s ease;
+}
+.box .container .button::before {
+  content: "";
+  position: absolute;
+  width: 94px;
+  height: 94px;
+  border-radius: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(229, 136, 137);
+  background: linear-gradient(
+    133deg,
+    rgba(229, 136, 137, 1) 0%,
+    rgba(229, 136, 137, 1) 15%,
+    rgba(209, 13, 12, 1) 20%,
+    rgba(209, 13, 12, 1) 65%,
+    rgba(97, 4, 3, 1) 100%
+  );
+}
+.box .container .button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background: rgb(80, 8, 8);
+  background: linear-gradient(
+    90deg,
+    #4c0405 1%,
+    rgb(202, 10, 11) 5%,
+    rgb(199, 39, 39) 45%,
+    #d88180 100%
+  );
+  left: 0;
+  bottom: 0;
+  transform: skewY(0deg) skewX(-40deg);
+  z-index: -4;
+  transition: all 0.5s ease;
+}
+.box .container .button:hover::after {
+  height: 13px;
+  bottom: -12px;
+  left: -7px;
+}
+.box .container .button span {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.box .container .button:hover {
+  transform: translate(12px, -12px);
+  box-shadow: -30px 10px 26px -5px black, -12px 12px 0 0 #ca0a0b,
+    -11px 11px 0 0 #ca0a0b, -10px 10px 0 0 #ca0a0b, -9px 9px 0 0 #ca0a0b,
+    -8px 8px 0 0 #ca0a0b, -7px 7px 0 0 #ca0a0b, -6px 6px 0 0 #ca0a0b,
+    -5px 5px 0 0 #ca0a0b, -4px 4px 0 0 #ca0a0b, -3px 3px 0 0 #ca0a0b,
+    -2px 2px 0 0 #ca0a0b, -1px 1px 0 0 #ca0a0b;
+  z-index: 999;
+}
+.box::before {
+  content: "";
+  width: calc(100% + 25px);
+  height: calc(100% + 10px);
+  position: absolute;
+  left: -25px;
+  top: 35px;
+  background: rgb(100, 104, 106);
+  background: linear-gradient(
+    135deg,
+    rgba(100, 104, 106, 1) 0%,
+    rgba(100, 104, 106, 1) 45%,
+    rgba(222, 221, 221, 1) 55%,
+    rgba(222, 221, 221, 1) 100%
+  );
+  z-index: -1;
+  border-radius: 15px;
+}
+.box::after {
+  content: "";
+  width: 30px;
+  height: 45px;
+  position: absolute;
+  left: -14px;
+  top: 12px;
+  background: rgba(100, 104, 106, 1);
+  z-index: -1;
+  transform: rotate(215deg);
+}
+.box .container::before {
+  content: "";
+  width: 30px;
+  height: 45px;
+  position: absolute;
+  right: -9px;
+  bottom: -39px;
+  background: rgba(222, 221, 221, 1);
+  z-index: -1;
+  transform: rotate(215deg);
+}
+
+    </style>
+</div>
+
+
+
+
+
+    
+    
+    
+<div>
+<figure>
+  <div>
+    <span class="span" onclick="window.open('https://www.warframe.com/droptables')">Warframe</span>
+    <span class="span" onclick="window.open('https://www.warframe.com/droptables')">Droptables</span>
+  </div>
+</figure>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+figure {
+    position:absolute;
+    left:calc(99% - 205px);
+    top:1%;
+  width: 200px;
+  height: 60px;
+  cursor: pointer;
+  perspective: 500px;
+  -webkit-perspective: 500px;
+}
+figure div {
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: 0.25s;
+  -webkit-transition: 0.25s;
+}
+figure:hover div {
+  transform: rotateX(-90deg);
+}
+.span {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  border: 5px solid #fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 50px;
+  font-size: 17pt;
+  text-align: center;
+  text-transform: uppercase;
+}
+.span:nth-child(1) {
+  color: #fff;
+  transform: translate3d(0, 0, 30px);
+  -webkit-transform: translate3d(0, 0, 30px);
+}
+.span:nth-child(2) {
+  color: #316249;
+  background: #fff;
+  transform: rotateX(90deg) translate3d(0, 0, 30px);
+  -webkit-transform: rotateX(90deg) translate3d(0, 0, 30px);
+}
+
+</style>
+</div>
+
+
+
+    
+    
+<div>
+<button class="name" onclick="window.open('https://wf.xuerian.net/#wishlist')">Relics</button>
+<style>
+
+p {
+    text-align:right;
+}
+    
+    * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+
+* {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+		-webkit-tap-highlight-color: transparent;
+}
+
+
+.name {
+    position:absolute;
+    left:2%;
+    top:90%;
+	width: 150px;
+	height: 50px;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	color: brown;
+	background: white;
+	border: 2px solid brown;
+	box-shadow: 5px 5px 0 brown,
+		-5px -5px 0 brown,
+		-5px 5px 0 brown,
+		5px -5px 0 brown;
+	transition: 500ms ease-in-out;
+}
+
+.name:hover {
+	box-shadow: 20px 5px 0 brown, -20px -5px 0 brown;
+}
+
+.name:focus {
+	outline: none;
+}
+</style>    
+</div>
+
+<div class="tools">
+<div class="buttons">
+  <button onclick="window.open('https://tenno.tools/')">Tenotools</button>
+  <button onclick="window.open('https://hub.warframestat.us/')">Stats</button>
+</div>
+<style>
+    .buttons {
+  display: flex;
+  width: 380px;
+  gap: 10px;
+  --b: 5px;   /* the border thickness */
+  --h: 1.8em; /* the height */
+}
+
+.tools {
+    position:absolute;
+    left:calc(50% - 190px);
+    top:1%;
+}
+    
+.buttons button {
+  --_c: #FBC02D;
+  flex: calc(1.25 + var(--_s,0));
+  min-width: 0;
+  font-size: 40px;
+  font-weight: bold;
+  height: var(--h);
+  cursor: pointer;
+  color: var(--_c);
+  border: var(--b) solid var(--_c);
+  background: 
+    conic-gradient(at calc(100% - 1.3*var(--b)) 0,var(--_c) 209deg, #0000 211deg) 
+    border-box;
+  clip-path: polygon(0 0,100% 0,calc(100% - 0.577*var(--h)) 100%,0 100%);
+  padding: 0 calc(0.288*var(--h)) 0 0;
+  margin: 0 calc(-0.288*var(--h)) 0 0;
+  box-sizing: border-box;
+  transition: flex .4s;
+}
+.buttons button + button {
+  --_c: #216F9C;
+  flex: calc(.75 + var(--_s,0));
+  background: 
+    conic-gradient(from -90deg at calc(1.3*var(--b)) 100%,var(--_c) 119deg, #0000 121deg) 
+    border-box;
+  clip-path: polygon(calc(0.577*var(--h)) 0,100% 0,100% 100%,0 100%);
+  margin: 0 0 0 calc(-0.288*var(--h));
+  padding: 0 0 0 calc(0.288*var(--h));
+}
+.buttons button:focus-visible {
+  outline-offset: calc(-2*var(--b));
+  outline: calc(var(--b)/2) solid #000;
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:focus-visible + button {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+.buttons button:has(+ button:focus-visible) {
+  background: none;
+  clip-path: none;
+  margin: 0;
+  padding: 0;
+}
+button:hover,
+button:active:not(:focus-visible) {
+  --_s: .75;
+}
+button:active {
+  box-shadow: inset 0 0 0 100vmax var(--_c);
+  color: #fff;
+}
+
+
+
+body {
+
+  font-family: system-ui, sans-serif;
+}
+</style>
+
+</div>
+
+    
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, blue, black);
+    height: 100vh; /* Make sure the gradient covers the entire viewport height */
+  }
+* {
+  cursor: url(download.png),auto!important;
+}
+
+
+
+
+    
+</style>
+        
+    <script>
+
+
+
+    document.oncontextmenu = document.body.oncontextmenu = function () {
+        return false;
+    }
+
+
+        
+document.addEventListener("keypress", function(map) {
+  if (map.key === "g" || map.key === "G") {
+    window.open("https://guideofthelot.us/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "r" || map.key === "R") {
+    window.open("https://riven-im.vercel.app/", "_blank");
+  }
+});
+
+
+document.addEventListener("keypress", function(map) {
+  if (map.key === "t" || map.key === "T") {
+    window.open("https://www.twitch.tv/directory/category/warframe", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "y" || map.key === "Y") {
+    window.open("https://www.youtube.com/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "f" || map.key === "F") {
+    window.open("https://framehub.paroxity.net/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "p" || map.key === "P") {
+    window.open("https://glyphs.wf/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "c" || map.key === "C") {
+    window.open("https://polychrome.seldszar.fr/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "o" || map.key === "O") {
+    window.open("https://www.orokinarchives.com/", "_blank");
+  }
+});
+document.addEventListener("keypress", function(map) {
+  if (map.key === "w" || map.key === "W") {
+    window.open("https://www.warframe.com/", "_blank");
+  }
+});
+        document.addEventListener("keypress", function(map) {
+  if (map.key === "d" || map.key === "D") {
+    window.open("https://buff0000n.github.io/dojocad/", "_blank");
+  }
+});
+        document.addEventListener("keypress", function(map) {
+  if (map.key === "m" || map.key === "M") {
+    window.open("https://buff0000n.github.io/mandascore/", "_blank");
+  }
+});
+    </script>
+
+        
+    </body>
+    
+
+</html>
